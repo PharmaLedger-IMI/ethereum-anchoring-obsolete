@@ -4,7 +4,7 @@ function getVersions(anchorFactory, anchorID, callback) {
         console.log('finished get anchors :', anchorID, f);
         const anchors = [];
         for (let i = 0; i < f.length; i++) {
-            anchors.push(f[i].hash.newHashLinkSSI);
+            anchors.push(f[i].newHashLinkSSI);
 
         }
 
