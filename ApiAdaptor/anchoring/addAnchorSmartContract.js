@@ -1,14 +1,14 @@
 function addAnchor(anchorFactory, account,
-                   anchorID, keySSIType, controlString,
-                   vn, newHashLinkSSI, ZKPValue, lastHashLinkSSI,
+                   anchorID, controlString,
+                   newHashLinkSSI, ZKPValue, lastHashLinkSSI,
                    signature, publicKey,
                    callback) {
 
-    console.log('Input for addAnchor smart contract : ',anchorID,keySSIType,controlString,
-        vn, newHashLinkSSI, ZKPValue, lastHashLinkSSI,
+    console.log('Input for addAnchor smart contract : ',anchorID,controlString,
+        newHashLinkSSI, ZKPValue, lastHashLinkSSI,
         signature, publicKey);
-    anchorFactory.methods.addAnchor(anchorID, keySSIType, controlString,
-        vn, newHashLinkSSI, ZKPValue, lastHashLinkSSI,
+    anchorFactory.methods.addAnchor(anchorID, controlString,
+        newHashLinkSSI, ZKPValue, lastHashLinkSSI,
         signature, publicKey).send({from: account, gas: 1500000}).then((f) => {
         const statusCode = f.events.InvokeStatus.returnValues.statusCode.toString().trim();
         console.log("Smart contract status code : ", statusCode);
@@ -22,7 +22,7 @@ function addAnchor(anchorFactory, account,
         .catch(err => {
             console.log({
                 anchorID,
-                keySSIType, controlString, vn, newHashLinkSSI, ZKPValue, lastHashLinkSSI, signature, publicKey, account
+                controlString, newHashLinkSSI, ZKPValue, lastHashLinkSSI, signature, publicKey, account
             });
             console.log(err);
             callback(err, null);

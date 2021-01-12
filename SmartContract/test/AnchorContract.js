@@ -87,8 +87,8 @@ describe('Anchor Contract', () => {
         const signature65 = getSignature(seedSSI,valueToHash,newHashLinkSSI,zkpValue,lastHashLinkSSI,publicKeyEncoded);
 
 
-        const result = await anchorContract.methods.addAnchor(anchorID, keySSIType, controlSubstring,
-            versionNumber, newHashLinkSSI, zkpValue, lastHashLinkSSI,
+        const result = await anchorContract.methods.addAnchor(anchorID,  controlSubstring,
+            newHashLinkSSI, zkpValue, lastHashLinkSSI,
             signature65, prefixedPublicKey).send({
             from: accounts[0],
             gas: 3000000
@@ -99,16 +99,16 @@ describe('Anchor Contract', () => {
         const anchors = await anchorContract.methods.getAnchorVersions(anchorID).call();
 
         assert.equal(anchors[0].ZKPValue, zkpValue);
-        assert.equal(anchors[0].hash.newHashLinkSSI, newHashLinkSSI);
-        assert.equal(anchors[0].hash.lastHashLinkSSI, lastHashLinkSSI);
+        assert.equal(anchors[0].newHashLinkSSI, newHashLinkSSI);
+        assert.equal(anchors[0].lastHashLinkSSI, lastHashLinkSSI);
         assert.equal(anchors.length, 1);
     });
 
     it ('read only anchors can be added only once', async () => {
         // read only anchors ignore every control field
         //can add only one
-        const result = await anchorContract.methods.addAnchor("anchorID", "keySSIType", "0x",
-            "vn", "newHashLinkSSI", "ZKPValue", "lastHashLinkSSI",
+        const result = await anchorContract.methods.addAnchor("anchorID", "0x",
+            "newHashLinkSSI", "ZKPValue", "lastHashLinkSSI",
             "0x", "0x").send({
             from: accounts[0],
             gas: 3000000
@@ -116,8 +116,8 @@ describe('Anchor Contract', () => {
 
         assert.equal(result.events.InvokeStatus.returnValues.statusCode, 201);
 
-        const result2 = await anchorContract.methods.addAnchor("anchorID", "keySSIType", "0x",
-            "vn", "newHashLinkSSI", "ZKPValue", "lastHashLinkSSI",
+        const result2 = await anchorContract.methods.addAnchor("anchorID", "0x",
+            "newHashLinkSSI", "ZKPValue", "lastHashLinkSSI",
             "0x", "0x").send({
             from: accounts[0],
             gas: 3000000
@@ -157,8 +157,8 @@ describe('Anchor Contract', () => {
         let signature65 = getSignature(seedSSI,valueToHash,newHashLinkSSI,zkpValue,lastHashLinkSSI,publicKeyEncoded);
 
 
-        let result = await anchorContract.methods.addAnchor(anchorID, keySSIType, controlSubstring,
-            versionNumber, newHashLinkSSI, zkpValue, lastHashLinkSSI,
+        let result = await anchorContract.methods.addAnchor(anchorID,  controlSubstring,
+             newHashLinkSSI, zkpValue, lastHashLinkSSI,
             signature65, prefixedPublicKey).send({
             from: accounts[0],
             gas: 3000000
@@ -174,8 +174,8 @@ describe('Anchor Contract', () => {
         signature65 = getSignature(seedSSI,valueToHash,newHashLinkSSI,zkpValue,lastHashLinkSSI,publicKeyEncoded);
 
 
-        result = await anchorContract.methods.addAnchor(anchorID, keySSIType, controlSubstring,
-            versionNumber, newHashLinkSSI, zkpValue, lastHashLinkSSI,
+        result = await anchorContract.methods.addAnchor(anchorID, controlSubstring,
+            newHashLinkSSI, zkpValue, lastHashLinkSSI,
             signature65, prefixedPublicKey).send({
             from: accounts[0],
             gas: 3000000
@@ -218,8 +218,8 @@ describe('Anchor Contract', () => {
         let signature65 = getSignature(seedSSI,valueToHash,newHashLinkSSI,zkpValue,lastHashLinkSSI,publicKeyEncoded);
 
 
-        let result = await anchorContract.methods.addAnchor(anchorID, keySSIType, controlSubstring,
-            versionNumber, newHashLinkSSI, zkpValue, lastHashLinkSSI,
+        let result = await anchorContract.methods.addAnchor(anchorID, controlSubstring,
+            newHashLinkSSI, zkpValue, lastHashLinkSSI,
             signature65, prefixedPublicKey).send({
             from: accounts[0],
             gas: 3000000
@@ -235,8 +235,8 @@ describe('Anchor Contract', () => {
         signature65 = "0x00";
         prefixedPublicKey = "0x00";
 
-        result = await anchorContract.methods.addAnchor(anchorID, keySSIType, controlSubstring,
-            versionNumber, newHashLinkSSI, zkpValue, lastHashLinkSSI,
+        result = await anchorContract.methods.addAnchor(anchorID,  controlSubstring,
+            newHashLinkSSI, zkpValue, lastHashLinkSSI,
             signature65, prefixedPublicKey).send({
             from: accounts[0],
             gas: 3000000
@@ -279,8 +279,8 @@ describe('Anchor Contract', () => {
         // use some other signature
         let signature65 = "0xe9c9d861de9af8ed0906950714dd3f14d7095232f609f130f4c7a91c6f84b49b101c05c81ff186c5c9e6f0e26122fea1ee9c6aad68d68e624877d8aa5a8b33431b";
 
-        result = await anchorContract.methods.addAnchor(anchorID, keySSIType, controlSubstring,
-            versionNumber, newHashLinkSSI, zkpValue, lastHashLinkSSI,
+        result = await anchorContract.methods.addAnchor(anchorID, controlSubstring,
+            newHashLinkSSI, zkpValue, lastHashLinkSSI,
             signature65, prefixedPublicKey).send({
             from: accounts[0],
             gas: 3000000
@@ -289,8 +289,8 @@ describe('Anchor Contract', () => {
         assert.equal(result.events.InvokeStatus.returnValues.statusCode, 103);
 
         //try with empty signature
-        result = await anchorContract.methods.addAnchor(anchorID, keySSIType, controlSubstring,
-            versionNumber, newHashLinkSSI, zkpValue, lastHashLinkSSI,
+        result = await anchorContract.methods.addAnchor(anchorID, controlSubstring,
+            newHashLinkSSI, zkpValue, lastHashLinkSSI,
             "0x00", prefixedPublicKey).send({
             from: accounts[0],
             gas: 3000000

@@ -33,8 +33,9 @@ function createAddAnchorHandler(anchorFactory, account) {
              */
 
             let controlSubstring = Buffer.from(openDsuUtils.decodeBase58(keySSI[4])).toString('hex');
-            const versionNumber = keySSI[5];
-            const keySSIType = keySSI[1];
+            // currently these fields are not used in the smart contract
+            //const versionNumber = keySSI[5];
+            //const keySSIType = keySSI[1];
             const newHashLinkSSI = body.hash.newHashLinkSSI;
             const lastHashLinkSSI = body.hash.lastHashLinkSSI == null ? newHashLinkSSI : body.hash.lastHashLinkSSI;
             const zkpValue = body.zkp;
@@ -61,8 +62,8 @@ function createAddAnchorHandler(anchorFactory, account) {
 
 
             require("../anchoring/addAnchorSmartContract")(anchorFactory.contract, account,
-                anchorID, keySSIType, controlSubstring,
-                versionNumber, newHashLinkSSI, zkpValue, lastHashLinkSSI,
+                anchorID, controlSubstring,
+                newHashLinkSSI, zkpValue, lastHashLinkSSI,
                 signature65, prefixedPublicKey,
                 (err, result) => {
 
@@ -72,8 +73,6 @@ function createAddAnchorHandler(anchorFactory, account) {
                         console.log({
                             anchorID,
                             controlSubstring,
-                            versionNumber,
-                            keySSIType,
                             newHashLinkSSI,
                             lastHashLinkSSI
                         });
