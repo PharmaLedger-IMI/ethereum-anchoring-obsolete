@@ -248,6 +248,10 @@ contract AnchorContract {
         return AnchorValue(newHashLinkSSI, lastHashLinkSSI, ZKPValue);
     }
 
+    function copyAnchorValue(AnchorValue memory anchorValue) private pure returns (AnchorValue memory){
+        return buildAnchorValue(anchorValue.newHashLinkSSI, anchorValue.lastHashLinkSSI, anchorValue.ZKPValue);
+    }
+
     // public function
     function getAnchorVersions(string memory anchor) public view returns (AnchorValue[] memory) {
         if (anchorVersions[anchor].length == 0)
@@ -257,7 +261,7 @@ contract AnchorContract {
         uint[] memory indexList = anchorVersions[anchor];
         AnchorValue[] memory result = new AnchorValue[] (indexList.length);
         for (uint i=0;i<indexList.length;i++){
-            result[i] = anchorStorage[indexList[i]];
+            result[i] = copyAnchorValue(anchorStorage[indexList[i]]);
         }
 
         return result;
