@@ -14,13 +14,22 @@ spec:
       env:
       # cluster ip on the Qourum Node 2
         - name: RPC_ADDRESS
-          value: "http://172.20.91.0:8545"
+          valueFrom:
+            configMapKeyRef:
+              name: apiadapter-configmap
+              key: RPC_ADDRESS
         - name: ACCOUNT
-          value: "0x25211bfc3e3d5cc76f79841a0d43dd180c0ee5a7"
+          valueFrom:
+            configMapKeyRef:
+              name: apiadapter-configmap
+              key: ACCOUNT
       # smart contract endpoint. will use /contractAddress and /abi to update the configuration of the API Adapter.
       # It will override the env. CONTRACT_ADDRESS value if set.
         - name : SMARTCONTRACT_ENDPOINT
-          value: "http://172.20.24.113:5000"
+          valueFrom:
+            configMapKeyRef:
+              name: apiadapter-configmap
+              key: SMARTCONTRACT_ENDPOINT
       ports:
         - containerPort: 3000
       imagePullPolicy: Always

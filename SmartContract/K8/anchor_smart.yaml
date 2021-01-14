@@ -18,11 +18,20 @@ spec:
       # GET /contractAddress
       # GET /abi
         - name: PORT
-          value: "5000"
+          valueFrom:
+            configMapKeyRef:
+              name: anchor-configmap
+              key: PORT
         - name: ACCOUNT
-          value: "0x66d66805E29EaB59901f8B7c4CAE0E38aF31cb0e"
+          valueFrom:
+            configMapKeyRef:
+              name: anchor-configmap
+              key: ACCOUNT
         - name: RPC_HOST
-          value: "172.20.241.77"
+          valueFrom:
+            configMapKeyRef:
+              name: anchor-configmap
+              key: RPC_HOST
 
 ---
 apiVersion: v1
