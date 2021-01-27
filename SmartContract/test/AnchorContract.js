@@ -60,7 +60,7 @@ describe('Anchor Contract', () => {
     });
 
     it ('can add anchor and get it\'s version back', async () => {
-        const seedSSI = openDSURequire("opendsu").loadApi("keyssi").buildSeedSSI('default', 'teststring', 'control', 'v0', 'hint');
+        const seedSSI = openDSURequire("opendsu").loadApi("keyssi").buildTemplateSeedSSI('default', 'teststring', 'control', 'v0', 'hint');
         const publicKeyRaw = seedSSI.getPublicKey("raw");
         const anchorID = seedSSI.getAnchorId();
         const newHashLinkSSI = "newHashLinkSSI";
@@ -129,7 +129,7 @@ describe('Anchor Contract', () => {
 
     it('anchor versions in sync for the same anchorID can be committed', async() => {
 
-        const seedSSI = openDSURequire("opendsu").loadApi("keyssi").buildSeedSSI('default', 'teststring', 'control', 'v0', 'hint');
+        const seedSSI = openDSURequire("opendsu").loadApi("keyssi").buildTemplateSeedSSI('default', 'teststring', 'control', 'v0', 'hint');
         const publicKeyRaw = seedSSI.getPublicKey("raw");
         const anchorID = seedSSI.getAnchorId();
         let newHashLinkSSI = "hashLinkSSI1";
@@ -190,7 +190,7 @@ describe('Anchor Contract', () => {
 
     it ('cannot update anchor with empty control string' , async () => {
 
-        const seedSSI = openDSURequire("opendsu").loadApi("keyssi").buildSeedSSI('default', 'teststring', 'control', 'v0', 'hint');
+        const seedSSI = openDSURequire("opendsu").loadApi("keyssi").buildTemplateSeedSSI('default', 'teststring', 'control', 'v0', 'hint');
         const publicKeyRaw = seedSSI.getPublicKey("raw");
         const anchorID = seedSSI.getAnchorId();
         let newHashLinkSSI = "hashLinkSSI1";
@@ -247,7 +247,7 @@ describe('Anchor Contract', () => {
     });
 
     it ('invalid signature will not be accepted', async () => {
-        const seedSSI = openDSURequire("opendsu").loadApi("keyssi").buildSeedSSI('default', 'teststring', 'control', 'v0', 'hint');
+        const seedSSI = openDSURequire("opendsu").loadApi("keyssi").buildTemplateSeedSSI('default', 'teststring', 'control', 'v0', 'hint');
         const publicKeyRaw = seedSSI.getPublicKey("raw");
         const anchorID = seedSSI.getAnchorId();
         let newHashLinkSSI = "hashLinkSSI1";
