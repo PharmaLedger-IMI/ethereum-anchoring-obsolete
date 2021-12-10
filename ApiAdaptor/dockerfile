@@ -8,6 +8,8 @@ RUN cd $TARGET_FOLDER_NAME && \
 
 RUN cd $TARGET_FOLDER_NAME && \
     npm run build privatesky
+    
+RUN cd ethereum-anchoring/ApiAdaptor && npm install
 
 WORKDIR /$TARGET_FOLDER_NAME/ethereum-anchoring/ApiAdaptor
 
