@@ -1,4 +1,4 @@
-# Ethereum anchoring
+# Ethereum anchoring reposity, obsolete! Moved here: https://github.com/PharmaLedger-IMI/eth-adapter
 
 
 # Anchor Smart Contract
